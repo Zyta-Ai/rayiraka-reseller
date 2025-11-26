@@ -1,0 +1,382 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --primary-yellow: #FFD700;
+    --primary-red: #D32F2F;
+    --primary-green: #2E7D32;
+    --dark-bg: #1a1a1a;
+    --light-bg: #f9f9f9;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+/* Utility Class */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVBAR RESPONSIVE --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-green);
+    z-index: 1001;
+}
+.logo span { color: var(--primary-yellow); }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.btn-nav {
+    background-color: var(--primary-red);
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+}
+
+/* Hamburger Menu Logic */
+#menu-toggle { display: none; }
+.hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text-color); }
+
+/* --- HERO SECTION --- */
+.hero {
+    background: linear-gradient(135deg, #fff 60%, var(--primary-yellow) 40%);
+    padding: 6rem 0 4rem; /* Top padding lebih besar untuk navbar */
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap; /* Kunci responsive layout */
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px; /* Agar tidak terlalu gepeng */
+    padding-right: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem; /* Besar di desktop */
+    line-height: 1.1;
+    margin: 1.5rem 0;
+    color: var(--dark-bg);
+}
+
+.text-highlight {
+    color: var(--primary-green);
+    font-family: 'Yellowtail', cursive;
+}
+
+.cta-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: white;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+
+.btn-secondary {
+    color: var(--dark-bg);
+    border-bottom: 2px solid var(--primary-red);
+}
+
+.hero-image {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 500px;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.floating-tag {
+    position: absolute;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 0.85rem;
+}
+.tag-1 { top: 15%; right: 5%; color: var(--primary-green); transform: rotate(10deg); }
+.tag-2 { bottom: 15%; left: 5%; color: var(--primary-red); transform: rotate(-5deg); }
+
+
+/* --- BENTO GRID RESPONSIVE --- */
+.bento-section { padding: 4rem 0; }
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+.text-red { color: var(--primary-red); }
+
+.bento-grid {
+    display: grid;
+    /* Grid 4 Kolom di Desktop */
+    grid-template-columns: repeat(4, 1fr); 
+    grid-auto-rows: 240px; /* Tinggi baris tetap agar rapi */
+    gap: 20px;
+}
+
+.bento-item {
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+.bento-item:hover { transform: translateY(-5px); }
+
+/* Grid Spanning Desktop */
+.item-large { grid-column: span 2; grid-row: span 2; }
+.item-tall { grid-row: span 2; }
+.item-wide { grid-column: span 2; }
+
+/* Styling Kotak */
+.yellow-bg { background-color: var(--primary-yellow); color: var(--dark-bg); }
+.green-bg { background-color: var(--primary-green); color: white; text-align: center; align-items: center; }
+.red-bg { background-color: var(--primary-red); color: white; }
+.white-bg { background-color: white; border: 2px solid #eee; }
+.black-bg { background-color: var(--dark-bg); color: white; }
+
+.bento-img-overlay {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 220px;
+    opacity: 0.9;
+    transition: 0.3s;
+}
+.bento-item:hover .bento-img-overlay { transform: scale(1.1); }
+.icon-big { font-size: 3.5rem; margin-bottom: 15px; }
+
+
+/* --- PRODUCT SECTION --- */
+.product-section {
+    padding: 4rem 0;
+    background-color: #fff8e1;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Agar turun ke bawah jika layar sempit */
+}
+
+.product-card {
+    background: white;
+    width: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    background: #f4f4f4;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.card-header img { width: 70%; transition: 0.3s; }
+.product-card:hover .card-header img { transform: scale(1.05) rotate(3deg); }
+
+.label-best, .label-new {
+    position: absolute;
+    top: 15px; left: 15px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+}
+.label-best { background: var(--primary-red); }
+.label-new { background: var(--primary-green); }
+
+.card-body { padding: 20px; }
+.card-body h3 { font-size: 1.3rem; margin-bottom: 5px; }
+.price { color: var(--primary-green); font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
+.unit { font-size: 0.9rem; color: #777; font-weight: 400; }
+.specs { list-style: none; margin-bottom: 20px; font-size: 0.9rem; color: #555; }
+.specs li { margin-bottom: 8px; }
+.specs i { color: var(--primary-yellow); width: 25px; }
+
+.btn-cart {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--dark-bg);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.btn-cart:hover { background: var(--primary-red); }
+
+/* --- FOOTER & FLOATING --- */
+footer { background: var(--dark-bg); color: white; padding: 3rem 0; text-align: center; }
+.socials a { color: white; font-size: 1.5rem; margin: 0 10px; }
+.float-wa {
+    position: fixed;
+    width: 55px; height: 55px;
+    bottom: 25px; right: 25px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 2000;
+}
+
+
+/* =========================================
+   MEDIA QUERIES (BAGIAN PENTING RESPONSIVE)
+   ========================================= */
+
+/* Tablet & Laptop Kecil (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .hero {
+        background: linear-gradient(180deg, #fff 50%, var(--primary-yellow) 50%); /* Gradient turun */
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .hero-container {
+        flex-direction: column-reverse; /* Gambar di atas, Text di bawah (atau sebaliknya sesuai selera) */
+        gap: 2rem;
+    }
+
+    .hero-content { padding-right: 0; }
+    .hero h1 { font-size: 3rem; }
+    .cta-group { justify-content: center; }
+
+    /* Bento Grid Tablet: Ubah jadi 2 Kolom */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Kolom */
+    }
+    /* Sesuaikan spanning agar tidak bolong */
+    .item-large { grid-column: span 2; grid-row: span 1; height: 300px; } 
+    .item-tall { grid-column: span 1; grid-row: span 1; }
+    .item-wide { grid-column: span 2; }
+}
+
+/* Mobile (Max Width: 768px) */
+@media (max-width: 768px) {
+    /* Navbar Hamburger */
+    .hamburger { display: block; } /* Munculkan icon hamburger */
+    
+    .nav-links {
+        position: fixed;
+        top: 0; right: -100%; /* Sembunyi di kanan */
+        height: 100vh;
+        width: 70%;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: 0.4s;
+    }
+
+    /* Ketika checkbox dicentang, menu muncul */
+    #menu-toggle:checked ~ .nav-links { right: 0; }
+    
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 0.95rem; }
+
+    /* Bento Grid Mobile: Ubah jadi 1 Kolom (Stack ke bawah) */
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto; /* Tinggi menyesuaikan isi */
+    }
+    /* Reset semua span menjadi normal */
+    .item-large, .item-tall, .item-wide { 
+        grid-column: span 1; 
+        grid-row: span 1; 
+        min-height: 200px;
+    }
+
+    .bento-img-overlay { width: 150px; bottom: -20px; right: -20px; }
+    
+    .product-card { width: 100%; max-width: 350px; }
+}
